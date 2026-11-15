@@ -1,4 +1,4 @@
-namespace AuthenticationApi
+namespace AuthApi
 {
     public class WeatherForecast
     {
