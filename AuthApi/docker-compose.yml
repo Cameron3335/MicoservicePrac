@@ -1,0 +1,25 @@
+networks:
+  backend:
+
+services:
+  authapi:
+    image: ${DOCKER_REGISTRY-}authapi
+    build:
+      context: .
+      dockerfile: AuthApi/Dockerfile
+    networks:
+      - backend
+    ports:
+      - "5000:8080"
+      - "5001:8081"
+
+  authdb:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: auth-db
+    environment:
+      - SA_PASSWORD=YourStrong!Passw0rd
+      - ACCEPT_EULA=Y
+    networks:
+      - backend
+    ports:
+      - "5002:1433"
